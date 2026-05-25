@@ -1,30 +1,47 @@
 name: Build iOS IPA
-on:
-  workflow_dispatch:
 
-jobs:
-  build:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v4
+  on:
+    workflow_dispatch:
 
-      - name: 显示所有文件（查看真实路径）
-        run: ls -la
+  jobs:
+    build:
+      runs-on: macos-latest
 
-      - name: 安装 XcodeGen
-        run: brew install xcodegen
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
 
-      - name: 生成 Xcode 项目
-        run: xcodegen generate
+        - name: Show repo structure
+          run: |
+            pwd
+            ls -la
 
-      - name: 编译打包
-        run: xcodebuild archive -project "企业应用.xcodeproj" -scheme "企业应用" -archivePath app.xcarchive
+        - name: Show files in swiftui folder
+          run: |
+            cd Desktop/IOS封装/swiftui
+            pwd
+            ls -la
 
-      - name: 导出 IPA
-        run: xcodebuild -exportArchive -archivePath app.xcarchive -exportPath output -exportOptionsPlist ExportOptions.plist
+        - name: Install XcodeGen
+          run: brew install xcodegen
 
-      - name: 上传 IPA 安装包
-        uses: actions/upload-artifact@v4
-        with:
-          name: EnterpriseApp
-          path: output/
+        - name: Generate Xcode project
+          run: |
+            cd Desktop/IOS封装/swiftui
+            xcodegen generate
+
+        - name: Build archive
+          run: |
+            cd Desktop/IOS封装/swiftui
+            xcodebuild archive -project EnterpriseApp.xcodeproj -scheme EnterpriseApp -archivePath build.xcarchive
+
+        - name: Export IPA
+          run: |
+            cd Desktop/IOS封装/swiftui
+            xcodebuild -exportArchive -archivePath build.xcarchive -exportPath . -exportOptionsPlist ExportOptions.plist
+
+        - name: Upload IPA
+          uses: actions/upload-artifact@v4
+          with:
+            name: EnterpriseApp
+            path: "Desktop/IOS封装/swiftui/*.ipa"
