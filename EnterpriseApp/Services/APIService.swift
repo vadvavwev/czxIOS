@@ -101,7 +101,7 @@ class APIService {
     func login(username: String, password: String) async throws -> LoginResponse {
         let body = LoginRequest(username: username, password: password)
         let response: APIResponse<LoginResponse> = try await request(
-            endpoint: "/auth/login",
+            endpoint: "/login",
             method: "POST",
             body: body,
             requiresAuth: false
