@@ -117,8 +117,8 @@ class APIService {
     // MARK: - Employees
 
     func getEmployees() async throws -> [Employee] {
-        let response: APIResponse<[Employee]> = try await request(endpoint: "/employees")
-        return response.data ?? []
+        let response: EmployeeListResponse = try await request(endpoint: "/employees")
+        return response.data?.employees ?? []
     }
 
     func getEmployee(id: String) async throws -> Employee {
@@ -163,8 +163,8 @@ class APIService {
     // MARK: - Categories
 
     func getCategories() async throws -> [Category] {
-        let response: APIResponse<[Category]> = try await request(endpoint: "/categories")
-        return response.data ?? []
+        let response: CategoryListResponse = try await request(endpoint: "/categories")
+        return response.data?.categories ?? []
     }
 
     func getCategory(id: String) async throws -> Category {
@@ -209,10 +209,10 @@ class APIService {
     // MARK: - Devices
 
     func getDevices(categoryId: String) async throws -> [Device] {
-        let response: APIResponse<[Device]> = try await request(
+        let response: DeviceListResponse = try await request(
             endpoint: "/categories/\(categoryId)/devices"
         )
-        return response.data ?? []
+        return response.data?.devices ?? []
     }
 
     func getDevice(id: String) async throws -> Device {

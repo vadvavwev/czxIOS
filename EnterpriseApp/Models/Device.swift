@@ -34,3 +34,15 @@ struct DeviceUpdate: Codable {
     let model: String?
     let categoryId: String?
 }
+
+// 后端返回 {devices: [...]} 格式的包装
+struct DevicesResponse: Codable {
+    let devices: [Device]
+}
+
+// 后端返回 {code, data: {...}, message} 格式的包装
+struct DeviceListResponse: Codable {
+    let code: Int
+    let data: DevicesResponse?
+    let message: String?
+}

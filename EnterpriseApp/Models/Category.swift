@@ -26,3 +26,15 @@ struct CategoryCreate: Codable {
 struct CategoryUpdate: Codable {
     let name: String?
 }
+
+// 后端返回 {categories: [...]} 格式的包装
+struct CategoriesResponse: Codable {
+    let categories: [Category]
+}
+
+// 后端返回 {code, data: {...}, message} 格式的包装
+struct CategoryListResponse: Codable {
+    let code: Int
+    let data: CategoriesResponse?
+    let message: String?
+}

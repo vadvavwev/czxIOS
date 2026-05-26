@@ -34,3 +34,16 @@ struct EmployeeUpdate: Codable {
     let age: Int?
     let email: String?
 }
+
+// 后端返回 {employees: [...]} 格式的包装
+struct EmployeesResponse: Codable {
+    let employees: [Employee]
+    let count: Int?
+}
+
+// 后端返回 {code, data: {...}, message} 格式的包装
+struct EmployeeListResponse: Codable {
+    let code: Int
+    let data: EmployeesResponse?
+    let message: String?
+}
