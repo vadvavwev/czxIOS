@@ -8,6 +8,7 @@
 import Foundation
 
 struct User: Codable {
+    let id: String
     let username: String
     let role: String
 }
@@ -22,8 +23,9 @@ struct LoginResponse: Codable {
     let user: User
 }
 
+// 后端返回格式：code + data + message
 struct APIResponse<T: Codable>: Codable {
-    let success: Bool
+    let code: Int
     let data: T?
     let message: String?
 }
