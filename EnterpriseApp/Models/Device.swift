@@ -1,8 +1,8 @@
 //
-//  Device.swift
-//  EnterpriseApp
+// Device.swift
+// EnterpriseApp
 //
-//  设备数据模型
+// 设备数据模型
 //
 
 import Foundation
@@ -13,14 +13,6 @@ struct Device: Identifiable, Codable {
     var model: String?
     var categoryId: String
     var categoryName: String?
-
-    enum CodingKeys: String, CodingKey {
-        case id = "_id"
-        case name
-        case model
-        case categoryId
-        case categoryName
-    }
 }
 
 struct DeviceCreate: Codable {
@@ -35,12 +27,10 @@ struct DeviceUpdate: Codable {
     let categoryId: String?
 }
 
-// 后端返回 {devices: [...]} 格式的包装
 struct DevicesResponse: Codable {
     let devices: [Device]
 }
 
-// 后端返回 {code, data: {...}, message} 格式的包装
 struct DeviceListResponse: Codable {
     let code: Int
     let data: DevicesResponse?
