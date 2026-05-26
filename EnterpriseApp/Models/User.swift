@@ -1,10 +1,3 @@
-//
-//  User.swift
-//  EnterpriseApp
-//
-//  用户数据模型
-//
-
 import Foundation
 
 struct User: Codable {
@@ -23,7 +16,7 @@ struct LoginResponse: Codable {
     let user: User
 }
 
-// 后端返回格式：code + data + message
+// 适配后端返回格式：code + data + message
 struct APIResponse<T: Codable>: Codable {
     let code: Int
     let data: T?
