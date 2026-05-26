@@ -3,15 +3,12 @@ options:
   bundleIdPrefix: com.enterprise
   deploymentTarget:
     iOS: "15.0"
-  xcodeVersion: "15.0"
-
 settings:
   base:
     CODE_SIGNING_ALLOWED: "NO"
     CODE_SIGNING_REQUIRED: "NO"
     CODE_SIGN_IDENTITY: ""
     DEVELOPMENT_TEAM: ""
-
 targets:
   EnterpriseApp:
     type: application
@@ -20,4 +17,3 @@ targets:
     settings:
       CODE_SIGNING_ALLOWED: "NO"
       CODE_SIGNING_REQUIRED: "NO"
-      CODE_SIGN_IDENTITY: ""
